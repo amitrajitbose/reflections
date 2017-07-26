@@ -1,0 +1,42 @@
+(FULL NOTES ON EVERNOTE -> GIT NOTEBOOK)
+
+1)What happens when you initialize a repository?Why do you need to do it?
+
+Each Git repository is tied to a specific directory - the directory where you ran git init. Only files from that directory (and sub directories inside that directory) will be contained in that repository, and you can have different repositories in different directories.
+
+Note: it's often the case that a Git repository in some directory will only contain, or track, some of the files in that directory, rather than all of them. You'll see how this works later this lesson.
+
+So, suppose you have a normal folder, which you want to make a git repository, then just open the BASH in that directory and type git init to initialize it into a repository. You can view using ls -a that there should be a .git file now apart from your old files.
+When you initialize the repository, Git doesn’t create any commits for you. You’ll have to create the first commit yourself.
+
+If you run git log to a newly created repository, since it now has zero commits, it returns an error which says: fatal:bad default revision 'HEAD' (or, fatal: your current branch 'master' does not have any commits yet)
+Now running the command git status will show you that you are in the master branch and this is the initial commit (i.e zero commit) with all the files present in the repo.
+
+
+2)
+
+How is the staging area different from the working directory and the repository?What value do you think it offers?
+
+New Changes/Working Directory->Staging Area->Existing Repository
+
+Staging area is like a temporary memory storage where the files are transferred using git add and then on using git commit then are uploaded to the repository. The staging area can be useful as because we need to add logical comments for every commit that we make in the repo.
+It is like a temporary plate which hold the files to be transferred until a commit is called.
+When you use git add <complete name of the file you want to add with extension>
+You will see that the file will be added to a staging area and thus called as a new file (green text). When you will commit it, using git commit then the files in the staging area (one or more files) will be transferred to the repository.
+
+
+3)
+
+How can you use the staging area to make sure you have one commit per logical
+change?
+
+What are some situations when branches would be helpful in keeping your history
+organized? How would branches help?
+
+How do the diagrams help you visualize the branch structure?
+
+What is the result of merging two branches together? Why do we represent it in
+the diagram the way we do?
+
+What are the pros and cons of Git's automatic merging vs. always doing merges
+manually?
