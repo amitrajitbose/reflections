@@ -1,1 +1,79 @@
-When would you want to create a remote repository rather than keeping all your local work?
+Setting Up Password Caching
+This is how you can push changes from your command line to your GITHUB repository without entering you username and password again and again. Your password will be locally saved. Follow this articles here: https://help.github.com/articles/caching-your-github-password-in-git/
+
+Syncing Repositories
+GIT officially hosts a public (or paid private) repository on its server and we host a repository on our system locally. Everytime we commit some changes they are saved locally but not reflected in the GIT repository. This secures the original version present on GIT from any unwanted changes or too many frequent changes or commits.
+Rather, GIT uses a concept of remote repository to push or pull data in the form of branches and not commits.
+Whenever we push data, or in other words push the master branch say, then GIT matches all the commits on the master branch now present on the remote local repository to its own original GIT repository and adds or syncs the new ones, the newly added ones to the original GIT repository. The commits that are not reachable from the master branch (or specific branch that has been pushed) and the commits that are already present in the GitHub repository are not added.
+
+Adding a remote
+Create a repository on GitHub from the + sign then the new repository. Then name it accordingly and leave it public (free).
+Initialise with README if you are making the repository on GitHub before you have it on your local system, i.e. before you had any content. Because that way the repository will start out with one commit in it. A repository without any commits cannot be cloned.
+But if you have commits in your repository which you want to share, then do not check the README box.
+Now add it as a remote to your local repository on your system. Use the command: git remote add origin <URL> (you will be able to find this in your newly created repository details section)
+To verify that the remote was added correctly, use : git remote -v
+To send the changed to remote we have to push them. We use git push which takes two arguments :
+1)name of remote where you want to send changes
+2)name of local branch which you want to send
+Thus we use the command: git push origin master
+﻿
+Editing Files Directly On GitHub
+Adding a new file can be done by clicking the + sign (or Create New File Button)  and create the file that you require and make a commit with an appropriate message.﻿
+
+When would you want to use a remote repository rather than keeping all your work local?
+
+
+When you want to collaborate with other users present on GitHub or your own project members and co-workers. Or may be you just want to show your project to the world. It is just like maintaining a cloud version of your project for anyone to see and use and collaborate rather than keeping it locally on your personal machine.
+
+Pulling Changes from remote GitHub to Local
+Use git pull <remote name> <branch name>
+Here git pull origin master
+﻿
+So,  that is the updated concept map.
+Why might you want to always pull changes manually rather than having Git automatically stay up-to-date with your remote repository?
+I may save myself from some technical jargons by manually pulling new commits. But that would destroy the commit history on git log. And I think git pull is a much easier and efficient process. Pulling the changes manually gives user the control on when keep the local repository in sync with remote. Also, any temporary changes done on remote would not accidentally get pulled.
+
+Describe the differences between forks, clones, and branches. When would you use one instead of another?
+A fork is a copy of an existing repository of a different user in your
+own GitHub account.Its similar to cloning from someone else by giving him due recognition.
+A clone is a copy of a existing repository either from GitHub or one of other local repositories.
+Branches is a copy within a repository.
+Fork helps in maintaining the reference (because fork maintains a count) and giving credit to the original author at the same time having an independent instance for your own modifications.
+Clone just enables to make a copy of an existing repository.
+
+After forking, merging local and remote branches
+Git stores local copies of all the remote branches, they'll contain the state of the remote branch as of the last time we synced them (pushed or pulled) the branch. When there are conflicts between remote and local, it turns out that both the versions get connected to local by the help of git fetch command. It helps update the local copy of the remote branch (origin/master) so that we can use git log and git diff to see which changes and conflicts were causing the trouble.
+Now when you have both the conflicting versions on your origin/masters local copy, then you can use git merge to combine the two commits and resolve the error as well. This can be done offline too.
+Fetching updates origin/master with the contents of GitHub's master branch and then origin/master is merged into master. So that becomes one single branch due to merging.
+So git pull is the same as git fetch followed by git merge.
+
+Use the followeing commands:
+git fetch origin
+git log origin/master or git diff origin/master
+git checkout master
+git merge master origin/master
+This should give rise to a conflict now while merging
+git pull origin master
+Use this command to verify that updating has been done
+git push origin master
+This pushes the changes to GitHub master remote
+    
+
+What is the benefit of having a copy of the last known state of the remote stored locally?
+When we do not have an internet connection to clone or fetch from the GitHub repository, then we can compare the origin/master branch which is the local copy of the GitHub on my system, it is updated till that point when I last time synced (by pushing/pulling/cloning) the GitHub repository. We can thus compare the origin/master to the master even offline.
+Suppose you board on a flight, you can simply fetch the latest state of GitHub into your local remote i.e. origin/master , and then go offline. Then you can run git log or git diff and compare your local master with the local remote origin/master and resolve the changes and conflicts. Finally, once you get online again, you can merge the branches and push it to GitHub. After merging, if you run git pull, you will notice that it is up-to-date, this verifies that you have resolved the conflict and merged the branches, now you just need to push it to GitHub cloud repository.
+
+Pull Requests
+These happen when while collaborating someone makes a change and asks you to merge it to the master branch. He/She pushes the new updated/new feature branch to GitHub and initiates a pull requests which you can review and merge to the master.
+If there are errors or conflicts you can ask him/her to resolve it in the comments section also with an in-line comment feature.
+
+How would you collaborate without using Git or GitHub? What would be easier, and what would be harder?
+
+Below you have the updates concept map.
+
+
+When would you want to make changes in a separate branch rather than directly in master? What benefits does each approach have?
+Whenever trying some new feature or something that we are not sure of which can break the entire program if added to master. This we isolate a copy of the master into a new branch of our choice for experimentation purpose and later merge them if required.
+
+
+(END OF LESSON 3)
